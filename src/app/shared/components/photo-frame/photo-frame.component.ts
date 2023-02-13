@@ -24,15 +24,16 @@ export class PhotoFrameComponent implements OnInit, OnDestroy {
     //dobouce é um atraso que coloquei no botão de like para
     //o mesmo não seja clicado inumeras vezes seguidas
     //com esta estrategia eu coloco um atraso de click no botão
-    //transforma o botão em um observable
-    //coloco um atraso de 500 milisegundos
-    //digo que quero ficar observando até acontencer a desinscrição
-    //quando é clicado me inscrevo e emito o evento de liked
     this.debouceSubject
+      //#region asObservable
+      //Cria um novo Observable com este Subject como fonte.
+      //Você pode fazer isso para criar uma lógica personalizada
+      //do lado do Observador do Subject e ocultá-la do código que usa o Observable.
+      //#endregion asObservable
       .asObservable()
-      .pipe(debounceTime(500))
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(() => this.liked.emit())
+      .pipe(debounceTime(500))           //coloco um atraso de 500 milisegundos
+      .pipe(takeUntil(this.unsubscribe)) //digo que quero ficar observando até acontencer a desinscrição
+      .subscribe(() => this.liked.emit())//inscrevo e emito o evento de liked
   }
 
   ngOnDestroy(): void {
