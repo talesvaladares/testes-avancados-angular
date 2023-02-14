@@ -78,7 +78,7 @@ describe(PhotoFrameComponent.name, () => {
 
   it(`(D) Should display image with src and description when bound to properties`, () => {
     const description = 'some description';
-    const src = 'image.jgp'
+    const src = 'image.jgp';
 
     component.description = description;
     component.src = src
